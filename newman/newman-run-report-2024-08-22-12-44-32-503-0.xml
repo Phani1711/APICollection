@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="GoRestDataDriverWorkFlow" tests="4" time="158.319">
+  <testsuite name="1-GetUsers" id="24945686-cb2b-414e-935c-af7e011075df" timestamp="2024-08-22T12:43:10.047Z" tests="0" failures="0" errors="0" time="0.260"/>
+  <testsuite name="2-CreateUsers" id="526c6278-c393-41a9-8451-0625d3a680b4" timestamp="2024-08-22T12:43:10.047Z" tests="0" failures="0" errors="0" time="39.191"/>
+</testsuites>

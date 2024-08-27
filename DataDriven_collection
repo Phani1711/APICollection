@@ -1,0 +1,176 @@
+{
+	"info": {
+		"_postman_id": "323b65a9-bc1f-4b67-87b8-b4d618f28e4e",
+		"name": "GoRestDataDriverWorkFlow",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "991412"
+	},
+	"item": [
+		{
+			"name": "1-GetUsers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: 'https://thinking-tester-contact-list.herokuapp.com/users/login',\r",
+							"    method: 'POST',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            \"email\": \"test0007@gmail.com\",\r",
+							"            \"password\": \"Test@123\"\r",
+							"        })\r",
+							"    }\r",
+							"}, function (error, response) {\r",
+							"    if (error) {\r",
+							"        console.log(error);\r",
+							"    } else {\r",
+							"        const responsebody = JSON.parse(response.text());\r",
+							"        const bookingTokenID = responsebody.token;\r",
+							"        console.log(\"Token is: \" + bookingTokenID);\r",
+							"        pm.variables.set(\"token_id\", bookingTokenID);\r",
+							"    }\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token_id}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://thinking-tester-contact-list.herokuapp.com/contacts/",
+					"protocol": "https",
+					"host": [
+						"thinking-tester-contact-list",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"contacts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2-CreateUsers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"requestdata\", JSON.stringify(pm.iterationData.toObject))"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 78e94de95b8e2cafb5b20d2b7de708e13fa41fbeb86f425c8d4897308b8a803a",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//   {{requestdata}}\r\n{\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"status\": \"{{status}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://gorest.co.in/public/v2/users",
+					"protocol": "https",
+					"host": [
+						"gorest",
+						"co",
+						"in"
+					],
+					"path": [
+						"public",
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.sendRequest({\r",
+					"    url: 'https://thinking-tester-contact-list.herokuapp.com/users/login',\r",
+					"    method: 'POST',\r",
+					"    header: {\r",
+					"        'Content-Type': 'application/json'\r",
+					"    },\r",
+					"    body: {\r",
+					"        mode: 'raw',\r",
+					"        raw: JSON.stringify({\r",
+					"            \"email\": \"test0007@gmail.com\",\r",
+					"            \"password\": \"Test@123\"\r",
+					"        })\r",
+					"    }\r",
+					"}, function (error, response) {\r",
+					"    if (error) {\r",
+					"        console.log(error);\r",
+					"    } else {\r",
+					"        const responsebody = JSON.parse(response.text());\r",
+					"        const bookingTokenID = responsebody.token;\r",
+					"        console.log(\"Token is: \" + bookingTokenID);\r",
+					"        pm.variables.set(\"token_id\", bookingTokenID);\r",
+					"    }\r",
+					"})"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
