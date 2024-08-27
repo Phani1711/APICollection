@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Run api test cases') {
             steps {
-                sh 'newman run ./sample.postman_collection.json -n 1 -r htmlextra,cli --reporter-htmlextra-export ./results/booking_report.html'
+                sh 'newman run ./sample_postman_collection.json -n 1 -r htmlextra,cli --reporter-htmlextra-export ./results/booking_report.html'
             }
         }
         stage('Publish HTML Extra Report'){
