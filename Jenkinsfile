@@ -16,7 +16,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Phani1711/APICollection/tree/master'
+                git url: 'https://github.com/Phani1711/APICollection'
             }
         }
         stage('Run api test cases') {
